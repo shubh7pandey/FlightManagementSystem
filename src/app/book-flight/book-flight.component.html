@@ -1,0 +1,85 @@
+<span *ngIf = "payStatus; then con01 else con02"></span>
+
+<ng-template #con01>
+
+  <div class="container">
+    <div class="jumbotron">
+      <button id="button1" name="bubtton1" > <a href="/dashboard"> GOTO DASHBOARD</a> </button>
+      <button id="button2" name="bubtton2" > <a href="/viewBooking">VIEW BOOKINGS</a> </button>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #con02>
+
+
+  <div class="container" id="four">
+
+
+    
+      <div class="" >
+        <h3>Add Passengers</h3>
+        <form #fB="ngForm" (submit) = "addPassenger()" >
+          <!-- *ngFor = " let i of passNum" -->
+          <div class="form-row" >
+            <div class="col-md-4 mb-3">   
+              <label for="name">NAME</label>
+              <input type="text" placeholder="name" required [(ngModel)] ="name" name="name" class="form-control">
+            </div>
+          </div>
+          <div class="form-row" >
+            <div class="col-md-4 mb-3">   
+              <label for="age">AGE</label>
+              <input type="text" name="age" class="form-control" [(ngModel)] = "age" required placeholder="age">
+            </div>
+          </div>
+          <div class="form-row" >
+            <div class="col-md-4 mb-3">
+              <label for="uin">UNIQUE ID</label>
+              <input type="text" class="form-control" name="uin" [(ngModel)]="uin" required placeholder="id">
+            </div>
+          </div>
+          <div class="form-row" >
+            <div class="col-md-4 mb-3">
+              <button class="btn btn-primary-dark" type="submit">ADD PASSENGER</button>
+            </div>
+    
+            <div class="col-md-4 mb-3">
+              <button class="btn btn-primary-dark" type="submit" (click) ="doneBooking()" >PROCEED TO PAYMENT</button>
+            </div>
+          </div>
+    
+    
+    
+        </form>
+    
+      </div>
+    
+      <span *ngIf = "show; then con01"></span>
+      <ng-template #con01>
+      <div class="container" id = "five">
+      <h3>Passenger Details:</h3>
+      <table>
+    
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>NAME</td>
+            <td>UID</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let i of passengerList; let j = index ">
+            <td>{{j+1}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.uin}}</td>
+            <td><button class="btn btn-primary-dark" type="submit" >DELETE</button></td>
+          </tr>
+        </tbody>
+    
+      </table>
+    </div>
+    </ng-template>
+  </div>
+</ng-template>

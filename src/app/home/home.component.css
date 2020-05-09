@@ -1,0 +1,33 @@
+.navbar{
+    background-color: #1FA0F7  ;
+}
+h1{
+    
+    color: black;
+}
+
+#three{
+    background-image: url('https://www.ecopetit.cat/wpic/mpic/290-2906962_colorful-sunset-sky-4k-sunset-sky-background-hd.jpg');
+}
+
+#one{
+
+
+    width: 20px;
+    height: 20px;
+    /* background-image: url(""); */
+    
+    size: 10px;
+
+}
+
+h1{
+    color: cornsilk;
+    margin-left: 20px;
+}
+
+#two{
+    padding: 15px;
+    margin-right: 10px;
+}
+

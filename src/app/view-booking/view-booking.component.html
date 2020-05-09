@@ -1,0 +1,58 @@
+<div class="container-md">
+
+
+
+
+    <div class="jumbotron" id="two">
+
+        <div class="card-body">
+            
+            <div class="card-header">
+                
+                <h3 id = "bH" >Booking History:</h3>
+
+                <button class="btn btn-dark" id="one" (click) = "goToDashBoard()" > GO TO DASHBOARD</button>
+            </div>
+            <br><br>
+            
+            <table>
+
+                <tbody>
+
+                    <tr *ngFor = "let i of bookingList; let j = index">
+
+                        <table border="" id="insideTable"> 
+
+                            <tr><th id="myrow">ID: </th><td>{{i.id}}</td></tr>
+                            <tr><th id="myrow">Booking Date:</th><td>{{i.bookingDate}}</td></tr>
+                            <!-- <tr><th id="myrow">Number of Passenger:</th><td>{{i.passengerList.length}}</td></tr>                                                                                                                                             -->
+                            <tr><th id="myrow">Flight:</th>
+                            <td>
+                                <table>
+                                    <div class="col-md-50">
+                                    
+                                        <tr><th>SOURCE</th><td>{{i.flight.source.name}}</td></tr>
+                                        <tr><th>DEPARTURE TIME</th><td>{{i.flight.departureTime}}</td></tr>
+                                        <tr><th>DESTINATION</th><td>{{i.flight.destination.name}}</td></tr>
+                                        <tr><th>ARRIVAL TIME</th><td>{{i.flight.arrivalTime}}</td></tr>
+                                
+                                    </div>
+                                </table>
+                            </td>
+                            </tr>
+                            <tr><th><button (click) = "deleteBooking(i)">DELETE BOOKING</button></th></tr>
+
+                            <!-- <tr><th id="myrow">Cost</th><td>{{i.cost}}</td></tr> -->
+                        </table>
+                        <br><br>
+                    </tr>
+                    <br><br>
+
+                </tbody>
+
+        
+            </table>
+        </div>
+    </div>
+
+</div>

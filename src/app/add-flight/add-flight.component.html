@@ -1,0 +1,73 @@
+<html>
+
+<body>
+    
+    <div class="col-md-6 offset-md-3 mt-5" id = "one">
+        <!-- <div class="alert alert-info">
+            Username: test<br />
+            Password: test
+        </div> -->
+        <div class="card">
+            <h4 class="card-header">ADD FLIGHT</h4>
+            <div class="card-body">
+                <form [formGroup]="flightForm" (ngSubmit)="addFlight()">
+                    <div class="form-group">
+                        <label for="number">Number</label>
+                        <input type="text" formControlName="number" class="form-control" placeholder="Enter Flight Number" />
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" formControlName="name" class="form-control" placeholder="Enter Company Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Model</label>
+                        <input type="text" formControlName="model" class="form-control" placeholder="Enter Model" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cpacity">Capacity</label>
+                        <input type="text" formControlName="capacity" class="form-control" placeholder="Enter Flight Capacity" />
+                    </div>
+                    <button class="btn btn-primary">
+                         ADD
+                    </button>
+                </form>
+            </div>
+        </div>
+<br><br><br>
+        <span *ngIf = "show; then con01"></span>
+        <ng-template #con01>
+        <div class="card">
+            <h4 class="card-header">ADDED Flight</h4>
+            <div class="card-body">
+
+                <table>
+
+                    <thead>
+                        <td>#</td>
+                        <td>NUMBER</td>
+                        <td>NAME</td>
+                        <td>MODEL</td>
+                        <td>CAPACITY</td>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor= "let i of flight; let j = index">
+                            <td>{{j+1}}</td>
+                            <td>{{i.number}}</td>
+                            <td>{{i.name}}</td>
+                            <td>{{i.model}}</td>
+                            <td>{{i.capacity}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+        </ng-template>
+
+    </div>
+
+</body>
+
+</html>

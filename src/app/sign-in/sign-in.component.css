@@ -1,0 +1,13 @@
+#one{
+
+    padding-right: 5cm;
+    padding-left: 3cm;
+    padding-bottom: 10cm;
+    align-items: center;
+}
+.card
+{
+    align-content: center;
+    /* text-align: center; */
+    /* initial-letter-align: center; */
+}
