@@ -51,7 +51,7 @@ public class BookingServiceImpl implements BookingService {
 		BookingEntity entity = new BookingEntity();
 		
 		entity.setBookingDate(model.getBookingDate());
-		entity.setCost(model.getCost());
+		entity.setCost(model.getNumOfPassenger()*model.getFlight().getFlightPrice());
 		entity.setUserId(userId);
 		try {
 			entity.setFlight(model.getFlight().getId());
