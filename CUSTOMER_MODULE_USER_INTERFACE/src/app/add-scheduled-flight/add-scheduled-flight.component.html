@@ -1,0 +1,44 @@
+<div class="col-md-6 offset-md-3 mt-5" id = "one">
+    <div class="card">
+        <h4 class="card-header">SCHEDULING FLIGHT</h4>
+        <div class="card-body">
+            <form [formGroup]="flightForm" (ngSubmit)="addFlight()">
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text" formControlName="id" class="form-control" placeholder="Enter Flight ID" />
+                </div>
+                <div class="form-group">
+                    <label for="flightNum">NUMBER</label>
+                    <input type="text" formControlName="flightNum" class="form-control" placeholder="Enter Flight Number" />
+                </div>
+                <div class="form-group">
+                    <label for="availableSeats">Seats Available</label>
+                    <input type="text" formControlName="availableSeats" class="form-control" placeholder="Enter Available Seats" />
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" formControlName="price" class="form-control" placeholder="Enter Price per Seat" />
+                </div>
+                <div class="form-group">
+                    <label for="sourceAirportCode">Source Airport Code</label>
+                    <input type="text" formControlName="sourceAirportCode" class="form-control" placeholder="Enter Source Airport Code" />
+                </div>
+                <div class="form-group">
+                    <label for="destAirportCode">Destination Airport Code</label>
+                    <input type="text" formControlName="destAirportCode" class="form-control" placeholder="Enter Destination Airport Code" />
+                </div>
+                <div class="form-group">
+                    <label for="departureTime">Deaprture Time</label>
+                    <input type="datetime-local" formControlName="departureTime" class="form-control" placeholder="Enter Deaprture Time" />
+                </div>
+                <div class="form-group">
+                    <label for="arrivaleTime">Arrival Time</label>
+                    <input type="datetime-local" formControlName="arrivaleTime" class="form-control" placeholder="Enter Arrival Time" />
+                </div>
+                <button class="btn btn-primary">
+                    ADD SCHEDULED FLIGHT
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+#one{
+
+    /* padding-right: 5cm;
+    padding-left: 3cm;
+    padding-bottom: 1cm;*/
+    margin-bottom: 7cm; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px 5px rgb(63, 57, 57);
+}
+.card
+{
+    
+    align-content: center;
+    box-sizing: border-box;
+    /* text-align: center; */
+    /* initial-letter-align: center; */
+}
+input{
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+button{
+    width: 200px;
+    height: 50px;
+    background-color: rgb(8, 65, 253);
+    animation-name: example;
+    animation-duration: 10s;
+}
+      
+@keyframes example {
+    from {background-color: rgb(66, 10, 10);}
+    to {background-color: rgb(71, 7, 248)}
+}

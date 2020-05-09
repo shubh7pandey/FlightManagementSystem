@@ -1,0 +1,22 @@
+#five{
+    margin: 1cm;
+    margin-left: 7cm;
+    margin-right: 7cm;
+}
+form{
+
+    /* margin-left: 100px; */
+    padding-top: 1cm;
+
+}
+
+.card-body{
+    margin-left: 100px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px 5px rgb(63, 57, 57);
+}
+
+td
+{
+    margin-right: 20px;
+}

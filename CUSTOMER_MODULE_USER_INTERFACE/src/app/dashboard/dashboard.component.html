@@ -1,0 +1,37 @@
+<div class="container" id="one">
+   
+<br><br>
+        <div class="card-header">
+            <h1><strong>HELLO {{this.name}} WELCOME TO FMS !!</strong></h1>
+        </div>
+        <br>
+        <div class="row">
+
+            <div class="col-md-5 mb-7">
+                <br><br>
+                <table class="table table-hover" id="two">
+
+                    <tbody>
+                        <tr><th>NAME:</th><td style="padding-right: 5cm;">{{user.name}}</td></tr>
+                        <tr><th>ID:</th><td style="padding-right: 5cm;">{{user.id}}</td></tr>
+                        <tr><th>E-MAIL:</th><td style="padding-right: 5cm;">{{user.eMail}}</td></tr>
+                        <tr><th>MOBILE:</th><td style="padding-right: 5cm;">{{user.phone}}</td></tr>
+                        <tr><th>TOTAL NO. OF BOOKINGS:</th><td style="padding-right: 5cm;">{{user.bookingList.length}}</td></tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+            <div class="col-md-5 mb-7">
+                <div class="column">
+                    <button (click) = "booking()" class="btn btn-dark" id = "three"> VIEW BOOKING HISTORY</button>    
+                </div>
+                <div class="column">
+                    <button (click) = "view()" class="btn btn-dark" id="four">SEARCH FLIGHTS</button>
+                </div>
+            </div>
+        </div>
+   <p></p>
+</div>

@@ -1,0 +1,114 @@
+<!-- main app container -->
+<div class="card m-5" id="one">
+    <h5 class="card-header">SIGN UP</h5>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Name</label>
+                    <input type="text" formControlName="Name"  class="form-control" placeholder="Enter your name" [ngClass]="{ 'is-invalid': submitted && f.Name.errors }" />
+                    <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
+                        <div *ngIf="f.Name.errors.required">Name is required</div>
+                        <div *ngIf="f.Name.errors.maxlength">Name cannot be more than 15 characters</div>
+                    </div>
+                </div>
+                <div class="form-group col-5">
+                    <label>Date of Birth</label>
+                    <input type="date" formControlName="dob" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+                    <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                        <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
+                    </div>
+                </div>
+    
+            </div>
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Email</label>
+                    <input type="text" formControlName="email"  class="form-control" placeholder="Enter your email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        <div *ngIf="f.email.errors.pattern">Email not valid</div> 
+                    </div>
+                </div>
+
+                <div class="form-group col-5">
+                    <label>Mobile Number</label>
+                    <input type="text" formControlName="mobile"  class="form-control" placeholder="Enter your mobile number" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+                    <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                        <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+                        <div *ngIf="f.mobile.errors.maxlength">Mobile Number cannot be more than 10 digits</div>
+                        <div *ngIf="f.mobile.errors.minlength">Mobile Number cannot be less than 10 digits</div>
+                        <div *ngIf="f.mobile.errors.pattern">Mobile number not valid</div> 
+                    </div>
+                </div>
+            </div> 
+            
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Password</label>
+                    <input type="password" formControlName="password" class="form-control" placeholder="Enter your password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 8 characters</div>
+                    </div>
+                </div>
+                <div class="form-group col-5">
+                    <label>Confirm Password</label>
+                    <input type="password" formControlName="confirmPassword" placeholder="Enter your password again"class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                        <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                
+
+                <!-- <div class="form-group col-5">
+                    <label>Gender</label>
+                    <select formControlName="gender" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                        <option value="Select Gender" selected disabled>Select your gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                        <div *ngIf="f.gender.errors.required">Gender is required</div>
+                    </div>
+                </div> -->
+            </div>
+            
+            <div class="form-group form-check">
+                <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+                <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+                <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accepting Terms & Conditions is required</div>
+            </div>
+            <div class="text-center">
+                <button class="w3-button w3-black" onclick = "onSubmit(); document.getElementById('id01').style.display='block'">Register</button>
+
+                <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button> -->
+                <!-- <div id="id01" class="w3-modal">
+                  <div class="w3-modal-content">
+                    <header class="w3-container w3-teal"> 
+                      <span onclick="document.getElementById('id01').style.display='none'" 
+                      class="w3-button w3-display-topright">&times;</span>
+                      <h2>Modal Header</h2>
+                    </header>
+                    <div class="w3-container">
+                      <p>Some text..</p>
+                      <p>Some text..</p>
+                  </div>
+                    <footer class="w3-container w3-teal">
+                      <p>Modal Footer</p>
+                    </footer>
+                  </div>
+                </div>  -->
+
+
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Reset</button>
+            </div>
+        </form>
+    </div>
+</div>
