@@ -1,0 +1,67 @@
+<html>
+
+<body>
+    
+    <div class="col-md-6 offset-md-3 mt-5" id = "one">
+        <!-- <div class="alert alert-info">
+            Username: test<br />
+            Password: test
+        </div> -->
+        <div class="card">
+            <h4 class="card-header">ADD AIRPORT</h4>
+            <div class="card-body">
+                <form [formGroup]="airportForm" (ngSubmit)="addAirport()">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" formControlName="name" class="form-control" placeholder="Enter Airport Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Location</label>
+                        <input type="text" formControlName="location" class="form-control" placeholder="Enter City Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="code">Code</label>
+                        <input type="text" formControlName="code" class="form-control" placeholder="Enter Airport Code" />
+                    </div>
+                    <button class="btn btn-primary">
+                         ADD
+                    </button>
+                </form>
+            </div>
+        </div>
+<br><br><br>
+        <span *ngIf = "show; then con01"></span>
+        <ng-template #con01>
+        <div class="card">
+            <h4 class="card-header">ADDED AIRPORT</h4>
+            <div class="card-body">
+
+                <table>
+
+                    <thead>
+                        <td>#</td>
+                        <td>NAME</td>
+                        <td>LOCATION</td>
+                        <td>CODE</td>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor= "let i of airportList; let j = index">
+                            <td>{{j+1}}</td>
+                            <td>{{i.name}}</td>
+                            <td>{{i.location}}</td>
+                            <td>{{i.code}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+        </ng-template>
+
+    </div>
+
+</body>
+
+</html>

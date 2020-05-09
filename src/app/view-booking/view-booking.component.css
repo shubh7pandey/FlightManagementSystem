@@ -1,0 +1,27 @@
+#one{
+
+    border-radius: 20px;
+    background-color: darkslategrey;
+    /* float: right; */
+
+}
+
+#myrow{
+
+    
+    padding-right: 80px;
+
+}
+
+#insideTable{
+
+    border-radius: 5px;
+
+}
+
+
+#bH{
+    float: left;
+    margin-right: 15cm;
+}
+
