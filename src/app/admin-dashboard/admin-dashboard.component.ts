@@ -25,8 +25,4 @@ export class AdminDashboardComponent implements OnInit {
     this.route.navigateByUrl("/addScFlight")
   }
 
-  gotosearch(){
-    this.route.navigateByUrl("/searchFlight")
-  }
-
 }

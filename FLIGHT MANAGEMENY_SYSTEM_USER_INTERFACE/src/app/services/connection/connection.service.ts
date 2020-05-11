@@ -32,7 +32,7 @@ export class ConnectionService {
 
   // }
 
-  baseUrl: string = "http://localhost:7001/customer/"
+  baseUrl: string = "http://localhost:7004/user/customer/"
   // Add User to Database
   postUser(user:User){
     // console.log(user,'connect')
@@ -48,7 +48,7 @@ export class ConnectionService {
   getScheduledFlight(source: any, dest: any, depTime: Date): Observable<Array<ScheduledFlight>>{
     console.log(this.baseUrl+"searchFlight/"+source+"/"+dest+"/"+depTime)
     // return  this.http.get<Array<ScheduledFlight>>(this.baseUrl+"searchFlight/"+source+"/"+dest+"/"+depTime)  
-    return this.http.get<Array<ScheduledFlight>>("http://localhost:7002/scheduledFlights/search/"+source+"/"+dest+"/"+depTime)
+    return this.http.get<Array<ScheduledFlight>>("http://localhost:7004/admin/scheduledFlights/search/"+source+"/"+dest+"/"+depTime)
   }
 
   updateBookingList(booking: Booking,userId: String): Observable<Array<Booking>> {
@@ -90,8 +90,11 @@ export class ConnectionService {
   airportList: Array<Airport> = []
   postAirport(airport: Airport): Airport{
     // this.airportList.push(airport)
-
-    this.http.post<Airport>("localhost:7002/airports",airport).subscribe(i => airport = i)
+    console.log(airport)
+    this.http.post<Airport>("localhost:7004/admin/airports",airport).subscribe(i =>{
+    airport = i
+    console.log(i)
+    })
     return airport
   }
 
@@ -99,23 +102,23 @@ export class ConnectionService {
   postFlight(flight: Flight): Flight{
     this.flightList.push(flight)
     // console.log(this.flightList.length)
-    this.http.post<Flight>("localhost:7002/flights",flight).subscribe(i => flight = i)
+    this.http.post<Flight>("localhost:7004/admin/flights",flight).subscribe(i => flight = i)
     return flight
   }
 
   getFlight(id: String): Flight{
+    this.http.get<Flight>("localhost:7004/admin/flights/"+id).subscribe(i => this.testFlight = i);
     return this.testFlight;
-    // return this.http.get<Flight>(this.baseUrl+"getFlight/"+id)
   }
 
   getAirport(code: String): Airport{
+    this.http.get<Airport>("localhost:7004/admin/airports/"+code).subscribe(i => this.testAirport1 = i);
     return this.testAirport1;
   }
 
   postScFlight(flight: ScheduledFlight): ScheduledFlight{
-    console.log(flight)
-    return null;
-    // return this.http.get<Flight>(this.baseUrl+"getFlight/"+id)
+    this.http.post<ScheduledFlight>("localhost:7004/admin/scheduledFlights/",flight).subscribe(i => flight = i);
+    return flight;
   }
 
 }

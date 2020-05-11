@@ -38,12 +38,6 @@ export class CheckService {
     this.checkLogInSource.next(status)
   }
 
-  private adminLogIn = new BehaviorSubject<Boolean>(false);
-  currentAdminStatus = this.checkLogInSource.asObservable();
-  changeAdminStatus(status: Boolean){
-    this.adminLogIn.next(status)
-  }
-
   private airportListSource = new BehaviorSubject<Array<Airport>>(null);
   currentAirportList = this.airportListSource.asObservable();
   changeAirportList(airportlist: Array<Airport>){

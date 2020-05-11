@@ -19,9 +19,6 @@ import { AddAirportComponent } from './add-airport/add-airport.component';
 import { AddFlightComponent } from './add-flight/add-flight.component';
 import { AddScheduledFlightComponent } from './add-scheduled-flight/add-scheduled-flight.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-
 
 @NgModule({
   declarations: [
@@ -44,9 +41,7 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     FormsModule,
     constRouting,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatButtonModule
+    HttpClientModule
   ],
   providers: [CheckService],
   bootstrap: [AppComponent]

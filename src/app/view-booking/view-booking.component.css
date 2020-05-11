@@ -1,7 +1,6 @@
 #one{
 
-    border-radius: 02px;
-    height: 1cm;
+    border-radius: 20px;
     background-color: darkslategrey;
     /* float: right; */
 
@@ -10,7 +9,7 @@
 #myrow{
 
     
-    padding-right: 10px;
+    padding-right: 80px;
 
 }
 
@@ -26,8 +25,3 @@
     margin-right: 15cm;
 }
 
-#two{
-
-    margin-top: 1cm;
-
-}

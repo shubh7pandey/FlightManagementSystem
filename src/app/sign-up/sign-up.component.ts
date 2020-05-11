@@ -60,8 +60,8 @@ export class SignUpComponent implements OnInit {
     )
     // console.log(user)
     
-    this.connect.postUser(user)
-    // console.log(user,"ts")
+    this.connect.postUser(user).subscribe(i => i = i)
+
     // stop here if form is invalid
     
     // display form values on success

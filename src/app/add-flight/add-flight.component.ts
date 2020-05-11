@@ -13,7 +13,7 @@ import { Flight } from '../classes/Flight/flight';
 export class AddFlightComponent implements OnInit {
 
 
-  public flight: Flight
+  public flight: Array<Flight> = [];
   public flightForm: FormGroup;
   public show: boolean = false
   constructor(private formB: FormBuilder, private connect: ConnectionService) { }
@@ -42,7 +42,7 @@ export class AddFlightComponent implements OnInit {
       this.flightForm.controls['model'].value,
       this.flightForm.controls['capacity'].value
     ))   
-    // console.log(this.flight.length)   
+    console.log(this.flight.length)   
     this.show = true
 
   }

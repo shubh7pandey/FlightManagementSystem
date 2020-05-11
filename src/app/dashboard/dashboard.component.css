@@ -1,18 +1,29 @@
-button{
+#one{
 
-    margin-left: 8cm;
-    margin-top: 1cm;
-    align-content: center;
-    float: right;
-    width: 10cm;
-    height: 2.7cm;
-
-}
-p
-{
+    /* padding: 3cm; */
+    margin-top: 2cm;
+    margin-left: 5cm;
     margin-bottom: 5cm;
 }
-#one{
-    margin-left: 5cm;
-    margin-right: 2cm;
+
+#three{
+
+    float: left;
+    height: 10cm;
+    width: 10cm;
+    background-color: darkslategray;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-right: 150px;
+
+}
+
+#four{
+    float: right;
+    height: 10cm;
+    width: 10cm;
+    background-color: darkslategray;
+    border-radius: 200px;
+    margin-top: 10px;
+    margin-right: 10px;
 }

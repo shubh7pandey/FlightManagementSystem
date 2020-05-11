@@ -62,20 +62,13 @@ export class BookFlightComponent implements OnInit
     this.check.currentFlight.subscribe(i => booking.flight = i);
     booking.bookingDate = String(new Date())
     booking.passengerList = this.passengerList
-    booking.cost = 0 
-    booking.numOfPassenger = this.passengerList.length
+    booking.cost = Number(booking.flight.price) * this.passengerList.length 
+    booking.numOfPasseger = this.passengerList.length
     this.check.changeBooking(booking);
     let user: User
     this.check.currentUser.subscribe(i => user = i)
-    // console.log(booking)
-    this.connect.updateBookingList(booking,user.eMail).subscribe(i=>{
-
-      // for( var j = 0; j < i.length;j++){
-      //   this.passengerList = i[j].passengerList
-      //   console.log(i[j])
-      //   console.log(this.passengerList)
-      // }
-    })
+    console.log(booking)
+    this.connect.updateBookingList(booking,user.eMail).subscribe(i=>console.log(i))
     
     // let bookingList: Array<Booking>
     // this.check.currentUser.subscribe(i => console.log(i))
@@ -93,8 +86,5 @@ export class BookFlightComponent implements OnInit
     this.passengerList[j] = null
     alert("deleted: "+this.passengerList[j])
   }
-
-
-
 }
 

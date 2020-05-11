@@ -39,11 +39,6 @@ export class SignInComponent implements OnInit {
     
     if(this.loginForm.controls['email'].value === "admin@g.com" && this.loginForm.controls['password'].value === "123")
     {
-      this.check.changeUser(null);
-      this.check.changeBooking(null)
-      this.check.changeFlight(null)
-      this.check.changeStatus(true)
-      this.check.changeAdminStatus(true)
       this.router.navigateByUrl('/adDashboard')
     }    
     this.connect.getUserByEmail((this.loginForm.controls['email'].value)).subscribe(i => {

@@ -4,7 +4,6 @@ import { ConnectionService } from '../services/connection/connection.service';
 import { User } from '../classes/User/user';
 import { Booking } from '../classes/Booking/booking';
 import { Router } from '@angular/router';
-import { Passenger } from '../classes/Passenger/passenger';
 
 
 @Component({
@@ -16,7 +15,6 @@ export class ViewBookingComponent implements OnInit {
 
   user: User
   bookingList: Array<Booking>
-  passengerList: Array<Passenger>
 
   
   constructor(private check:CheckService, private route: Router , private connect: ConnectionService) {
@@ -25,12 +23,7 @@ export class ViewBookingComponent implements OnInit {
     
     this.connect.getBookingList(this.user.eMail).subscribe(i => {
       this.bookingList = i 
-      for(var j = 0; j < i.length ; j++){
-        console.log(i[j].passengerList)
-      }
-      for(var j = 0; j < this.bookingList.length ; j++){
-        console.log(this.bookingList[j].passengerList)
-      }
+      // console.log(i)
     })
     // this.bookingList = [this.check.testBooking]  
 
@@ -50,11 +43,6 @@ export class ViewBookingComponent implements OnInit {
     this.connect.deleteBooking(booking.id);
     this.route.navigateByUrl('/dashboard')
     // this.route
-  }
-
-  showPassenger(i: Booking){
-    this.connect.getPassenger(i.id).subscribe(i=> this.passengerList = i)
-    console.log(this.passengerList)
   }
 
 }
