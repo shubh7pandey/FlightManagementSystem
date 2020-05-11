@@ -1,58 +1,101 @@
-<div class="container-md">
+<html>
 
+<body>
+    
 
+    <div class="container-md">
 
-
-    <div class="jumbotron" id="two">
-
-        <div class="card-body">
-            
-            <div class="card-header">
+        <div class="jumbotron" id="two">
+    
+            <div class="card-body">
                 
-                <h3 id = "bH" >Booking History:</h3>
-
-                <button class="btn btn-dark" id="one" (click) = "goToDashBoard()" > GO TO DASHBOARD</button>
-            </div>
-            <br><br>
-            
-            <table>
-
-                <tbody>
-
-                    <tr *ngFor = "let i of bookingList; let j = index">
-
-                        <table border="" id="insideTable"> 
-
-                            <tr><th id="myrow">ID: </th><td>{{i.id}}</td></tr>
-                            <tr><th id="myrow">Booking Date:</th><td>{{i.bookingDate}}</td></tr>
-                            <!-- <tr><th id="myrow">Number of Passenger:</th><td>{{i.passengerList.length}}</td></tr>                                                                                                                                             -->
-                            <tr><th id="myrow">Flight:</th>
-                            <td>
-                                <table>
-                                    <div class="col-md-50">
+                <div class="card-header">
+                    
+                    <h3 id = "bH" >Booking History:</h3>
+    
+                    <button class="btn btn-dark" id="one" (click) = "goToDashBoard()" > GO TO DASHBOARD</button>
+                </div>
+                <br><br>
+                
+                <table>
+    
+                    <tbody>
+    
+                        <tr *ngFor = "let i of bookingList; let j = index">
+    
+                            <table border="0px" id="insideTable"> 
+    
+                                <tr><th id="myrow">ID: </th><td>{{i.id}}</td></tr>
+                                <tr><th id="myrow">Booking Date:</th><td>{{i.bookingDate}}</td></tr>
+                                <!-- <tr><th id="myrow">Number of Passenger:</th><td>{{i.passengerList.length}}</td></tr>                                                                                                                                             -->
+                                <tr><th id="myrow">Flight:</th>
+                                <td>
+                                    <table>
+                                        <div class="col-md-50">
+                                            <tr><th>NUMBER</th><td>{{i.flight.flight.number}}</td></tr>
+                                            <tr><th>SOURCE</th><td>{{i.flight.source.name}}</td></tr>
+                                            <tr><th>DEPARTURE TIME</th><td>{{i.flight.departureTime}}</td></tr>
+                                            <tr><th>DESTINATION</th><td>{{i.flight.destination.name}}</td></tr>
+                                            <tr><th>ARRIVAL TIME</th><td>{{i.flight.arrivalTime}}</td></tr>
                                     
-                                        <tr><th>SOURCE</th><td>{{i.flight.source.name}}</td></tr>
-                                        <tr><th>DEPARTURE TIME</th><td>{{i.flight.departureTime}}</td></tr>
-                                        <tr><th>DESTINATION</th><td>{{i.flight.destination.name}}</td></tr>
-                                        <tr><th>ARRIVAL TIME</th><td>{{i.flight.arrivalTime}}</td></tr>
-                                
-                                    </div>
-                                </table>
-                            </td>
-                            </tr>
-                            <tr><th><button (click) = "deleteBooking(i)">DELETE BOOKING</button></th></tr>
+                                        </div>
+                                    </table>
+                                </td>
+                                </tr>
+                                <th>Passenger Details</th>
+                                <!-- <tr><th id="myrow"><button (click) = "showPassenger(i)" >Passenger Details</button></th> -->
+                                    <td>
+                                        <table>
+                                            <div class="col-md-50">
+                                                <tr *ngFor = " let k of i.passengerList; let l = index "><th style="padding-right: 1cm;">{{l+1}}</th><td>{{k.name}} ({{k.age}}) ({{k.uin}})</td></tr>
+                                        
+                                            </div>
+                                        </table>
+                                    </td>
+ 
+                                <tr>
+                                    <th><button (click) = "deleteBooking(i)">DELETE BOOKING</button></th>
 
-                            <!-- <tr><th id="myrow">Cost</th><td>{{i.cost}}</td></tr> -->
-                        </table>
+                                    <td>
+                                        <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button>
+                                        
+                                        <div id="id01" class="w3-modal">
+                                            <div class="w3-modal-content">
+                                              <header class="w3-container w3-black"> 
+                                                <span onclick="document.getElementById('id01').style.display='none'" 
+                                                class="w3-button w3-display-topright">&times;</span>
+                                                <br>
+                                                <h2>PASSENGER LIST:</h2>
+                                                <br>
+                                              </header>
+                                              <div class="w3-container">
+                                                  <p>{{i.passengerList.length}}</p>
+                                                <p  *ngFor = "let k of i.passengerList"  > {{k}} </p>
+                                              </div>
+
+                                            </div>
+                                          </div> -->
+
+                                    </td>
+
+                                    <!-- <td><button (click) = "getPassengers(i)">DELETE BOOKING</button></td> -->
+                                </tr>
+    
+                                <!-- <tr><th id="myrow">Cost</th><td>{{i.cost}}</td></tr> -->
+                            </table>
+                            <br><br>
+                        </tr>
                         <br><br>
-                    </tr>
-                    <br><br>
-
-                </tbody>
-
-        
-            </table>
+    
+                    </tbody>
+    
+            
+                </table>
+            </div>
         </div>
+    
     </div>
 
-</div>
+</body>
+
+</html>

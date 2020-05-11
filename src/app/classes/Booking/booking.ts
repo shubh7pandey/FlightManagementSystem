@@ -10,7 +10,7 @@ export class Booking {
         public passengerList: Array<Passenger> = [],
         public cost: Number,
         public flight: ScheduledFlight,
-        public numOfPasseger: Number
+        public numOfPassenger: Number
 
     ){}
 

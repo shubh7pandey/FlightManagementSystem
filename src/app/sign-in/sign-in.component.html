@@ -4,13 +4,13 @@
         Password: test
     </div> -->
     <div class="card">
-        <h4 class="card-header">Login</h4>
+        <h4 class="card-header">LOG IN</h4>
         <div class="card-body">
-            <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <form [formGroup]="loginForm" id="form_" (ngSubmit)="login()">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div class="col-25"><label for="email">Email</label>
+                    <div class="col-75"><input type="email" formControlName="email" class="form-control" placeholder="Enter your email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/></div>
+                </div><div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                         <div *ngIf="f.email.errors.required">Email is required</div>
                         <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                     </div>
@@ -23,11 +23,14 @@
                         <div *ngIf="f.password.errors.minlength">Password must be at least 8 characters</div>
                     </div>
                 </div>
-                <button [disabled]="loading" class="btn btn-primary">
+                <button [disabled]="loading" class="btn btn-primary animated bounce">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
+                    CONFIRM IDENTITY
                 </button>
+                <!-- <button mat-raised-button color="primary" type="submit">Log In</button> -->
             </form>
         </div>
     </div>
+
+    
 </div>

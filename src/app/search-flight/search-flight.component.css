@@ -1,6 +1,7 @@
 #five{
-    padding-left: 5cm;
-    padding-right: 5cm;
+    margin: 1cm;
+    margin-left: 7cm;
+    margin-right: 7cm;
 }
 form{
 
@@ -11,4 +12,11 @@ form{
 
 .card-body{
     margin-left: 100px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px 5px rgb(63, 57, 57);
+}
+
+td
+{
+    margin-right: 20px;
 }

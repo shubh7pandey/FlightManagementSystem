@@ -6,6 +6,7 @@ import { User } from 'src/app/classes/User/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable, ObservableLike } from 'rxjs';
 import { Flight } from 'src/app/classes/Flight/flight';
+import { Passenger } from 'src/app/classes/Passenger/passenger';
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +32,11 @@ export class ConnectionService {
 
   // }
 
-  baseUrl: string = "http://localhost:7001/customer/"
+  baseUrl: string = "http://localhost:7004/user/customer/"
   // Add User to Database
-  postUser(user:User): Observable<User>{
-    return this.http.post<User>(this.baseUrl,user);
+  postUser(user:User){
+    // console.log(user,'connect')
+    return this.http.post<User>(this.baseUrl,user).subscribe(i=>console.log("ADDED"));
   }
 
   // Get User By ID
@@ -44,12 +46,13 @@ export class ConnectionService {
 
   // Get Flight By Schedule
   getScheduledFlight(source: any, dest: any, depTime: Date): Observable<Array<ScheduledFlight>>{
-    // console.log(source, dest , depTime)
-    return  this.http.get<Array<ScheduledFlight>>(this.baseUrl+"searchFlight/"+source+"/"+dest+"/"+depTime)  
+    console.log(this.baseUrl+"searchFlight/"+source+"/"+dest+"/"+depTime)
+    // return  this.http.get<Array<ScheduledFlight>>(this.baseUrl+"searchFlight/"+source+"/"+dest+"/"+depTime)  
+    return this.http.get<Array<ScheduledFlight>>("http://localhost:7004/admin/scheduledFlights/search/"+source+"/"+dest+"/"+depTime)
   }
 
   updateBookingList(booking: Booking,userId: String): Observable<Array<Booking>> {
-    // console.log(booking)
+    console.log(booking)
     return this.http.post<Array<Booking>>(this.baseUrl+"changeBookingList/"+userId, booking)
   }
 
@@ -67,6 +70,11 @@ export class ConnectionService {
     this.http.delete(this.baseUrl+"deleteById/"+id).subscribe(i =>i)
   }
 
+  getPassenger(id: Number): Observable<Array<Passenger>>{
+    return this.http.get<Array<Passenger>>(this.baseUrl+"getPassengers/"+id)
+  }
+  // getPassengerList(id: Number): Observable<List<Passenger
+
 
   //-------------------------
   //ADMIN
@@ -80,31 +88,37 @@ export class ConnectionService {
   // }
 
   airportList: Array<Airport> = []
-  postAirport(airport: Airport){
-    this.airportList.push(airport)
-    return  this.airportList
+  postAirport(airport: Airport): Airport{
+    // this.airportList.push(airport)
+    console.log(airport)
+    this.http.post<Airport>("localhost:7004/admin/airports",airport).subscribe(i =>{
+    airport = i
+    console.log(i)
+    })
+    return airport
   }
 
   flightList: Array<Flight> = []
-  postFlight(flight: Flight){
+  postFlight(flight: Flight): Flight{
     this.flightList.push(flight)
     // console.log(this.flightList.length)
-    return this.flightList
+    this.http.post<Flight>("localhost:7004/admin/flights",flight).subscribe(i => flight = i)
+    return flight
   }
 
   getFlight(id: String): Flight{
+    this.http.get<Flight>("localhost:7004/admin/flights/"+id).subscribe(i => this.testFlight = i);
     return this.testFlight;
-    // return this.http.get<Flight>(this.baseUrl+"getFlight/"+id)
   }
 
   getAirport(code: String): Airport{
+    this.http.get<Airport>("localhost:7004/admin/airports/"+code).subscribe(i => this.testAirport1 = i);
     return this.testAirport1;
   }
 
   postScFlight(flight: ScheduledFlight): ScheduledFlight{
-    console.log(flight)
-    return null;
-    // return this.http.get<Flight>(this.baseUrl+"getFlight/"+id)
+    this.http.post<ScheduledFlight>("localhost:7004/admin/scheduledFlights/",flight).subscribe(i => flight = i);
+    return flight;
   }
 
 }

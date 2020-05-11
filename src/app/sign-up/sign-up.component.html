@@ -1,11 +1,11 @@
 <!-- main app container -->
-<div class="card m-5">
-    <h5 class="card-header">Sign Up</h5>
+<div class="card m-5" id="one">
+    <h5 class="card-header">SIGN UP</h5>
     <div class="card-body">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="form-row">
                 <div class="form-group col-5">
-                    <label>First Name</label>
+                    <label>Name</label>
                     <input type="text" formControlName="Name"  class="form-control" placeholder="Enter your name" [ngClass]="{ 'is-invalid': submitted && f.Name.errors }" />
                     <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
                         <div *ngIf="f.Name.errors.required">Name is required</div>
@@ -86,7 +86,27 @@
                 <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accepting Terms & Conditions is required</div>
             </div>
             <div class="text-center">
-                <button class="btn btn-primary mr-1">Register</button>
+                <button class="w3-button w3-black" onclick = "onSubmit(); document.getElementById('id01').style.display='block'">Register</button>
+
+                <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button> -->
+                <!-- <div id="id01" class="w3-modal">
+                  <div class="w3-modal-content">
+                    <header class="w3-container w3-teal"> 
+                      <span onclick="document.getElementById('id01').style.display='none'" 
+                      class="w3-button w3-display-topright">&times;</span>
+                      <h2>Modal Header</h2>
+                    </header>
+                    <div class="w3-container">
+                      <p>Some text..</p>
+                      <p>Some text..</p>
+                  </div>
+                    <footer class="w3-container w3-teal">
+                      <p>Modal Footer</p>
+                    </footer>
+                  </div>
+                </div>  -->
+
+
                 <button class="btn btn-secondary" type="reset" (click)="onReset()">Reset</button>
             </div>
         </form>

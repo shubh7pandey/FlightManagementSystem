@@ -20,18 +20,19 @@ export class SearchFlightComponent implements OnInit {
 
   public source: String;
   public destination: String;
-  public dateTime: Date = new Date()
+  public dateTime: Date
   public passenger: number;
   public status: Boolean
+  public adminStatus: Boolean
 
   public airportList: Array<Airport> = []
   constructor(private connect: ConnectionService,private router: Router, private fB: FormBuilder, private check: CheckService) { 
 
     this.check.currentStatus.subscribe(i => this.status = i)
+    this.check.currentAdminStatus.subscribe(i => this.adminStatus = i)
     
     this.connect.getAirport_List().subscribe(i => {
       this.airportList = i
-      // console.log(this.airportList)
     })
     
 
@@ -60,11 +61,26 @@ export class SearchFlightComponent implements OnInit {
   searchFlight()
   {
 // console.log(this.source,this.destination,this.dateTime)
-    
-    this.connect.getScheduledFlight(this.source,this.destination,this.dateTime).subscribe(f => this.flightList = f)
+    for(var i = 0 ; i < this.airportList.length ; i++){
+      if(this.airportList[i].name === this.source){
+        this.source = this.airportList[i].code
+        break
+      }
+    }
+    for(var i = 0 ; i < this.airportList.length ; i++){
+      if(this.airportList[i].name === this.destination){
+        this.destination = this.airportList[i].code
+        break
+      }
+    }
+
+    this.connect.getScheduledFlight(this.source,this.destination,this.dateTime).subscribe(f => {
+      this.flightList = f
+      console.log(f)
+    })
     // console.log(this.flightList[0].price)
     this.search = true;
-    if(this.logInCheck === true){
+    if(this.status === true){
 
       this.allowBooking = true;
 
@@ -73,17 +89,29 @@ export class SearchFlightComponent implements OnInit {
   }
 
   bookFlight(j:ScheduledFlight ){
-    if(this.allowBooking==true){
+    if(this.status === true){
       this.check.changeFlight(j);
       this.router.navigateByUrl('/bookFlight')
     }
+      
+    // if(this.adminStatus === true){
+    //   this.router.navigateByUrl('/adDashboard')
+    // }
 
     else{
-      alert("PLEASE LOG IN FIRST TO BOOK FLIGHT")
+      this.router.navigateByUrl("/signIn")
     }
 
   }
 
+  goto(){
+    if(this.status=== true){
+      this.router.navigateByUrl('/dashboard')
+    }
+    else{
+        this.router.navigateByUrl('/signIn')
+      }
+  }
   
   
   

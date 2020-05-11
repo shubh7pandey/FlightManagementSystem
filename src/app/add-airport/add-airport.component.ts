@@ -15,7 +15,7 @@ export class AddAirportComponent implements OnInit {
 
   airportForm: FormGroup
   show: boolean = false
-  airportList : Array<Airport>
+  airportList : Airport
   ngOnInit(): void {
 
     this.airportForm = this.formBuilder.group({

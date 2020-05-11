@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   }
 
   logOut(){
+    this.checkService.changeAdminStatus(false)
     this.checkService.changeStatus(false)
     this.route.navigateByUrl("/")
   }
