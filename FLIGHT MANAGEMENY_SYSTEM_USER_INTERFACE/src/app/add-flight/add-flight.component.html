@@ -8,7 +8,10 @@
             Password: test
         </div> -->
         <div class="card">
-            <h4 class="card-header">ADD FLIGHT</h4>
+            <div  class="card-header">
+                <h4>ADD FLIGHT</h4>
+                <button><a href="/adDashboard">DASHBOARD</a></button>
+            </div>
             <div class="card-body">
                 <form [formGroup]="flightForm" (ngSubmit)="addFlight()">
                     <div class="form-group">
@@ -38,8 +41,7 @@
         <ng-template #con01>
         <div class="card">
             <div class="card-header">
-                <h4>ADD FLIGHT</h4>
-                <button><a href="/adDashboard">DASHBOARD</a></button>
+                <h4>ALL FLIGHTs</h4>
             </div>
             <div class="card-body">
 

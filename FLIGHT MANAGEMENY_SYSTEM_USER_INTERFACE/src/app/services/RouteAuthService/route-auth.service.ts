@@ -11,14 +11,12 @@ export class RouteAuthService {
 
   public isAdminAuthenticated(): boolean {
       
-      if(this.tokenStorage.getUser().roles.indexOf('ADMIN') > -1){
-        return false;
+      if(this.tokenStorage.getUser().roles[0] === 'ADMIN'){
+        return true;
       }
       else{
         return false;
       }
-    
-     return false
   }
 
   public isCustomerAuthenticated(): boolean {

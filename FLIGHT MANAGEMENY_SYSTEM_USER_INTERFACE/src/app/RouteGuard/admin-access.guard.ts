@@ -13,7 +13,7 @@ export class AdminAccessGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean>{
 
-      if(!this.routeAuth.isAdminAuthenticated){
+      if(this.routeAuth.isAdminAuthenticated()){
         return of(true)
       }
       else{

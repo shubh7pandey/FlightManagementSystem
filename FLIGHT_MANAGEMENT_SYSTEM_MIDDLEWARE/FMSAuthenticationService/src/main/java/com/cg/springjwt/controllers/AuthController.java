@@ -85,8 +85,6 @@ public class AuthController {
 
 		Set<Role> roles = new HashSet<>();
 
-//		Role userRole = roleRepository.findByName(ERole.CUSTOMER)
-//				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 		Role userRole = new Role(ERole.CUSTOMER);
 		roles.add(userRole);
 
@@ -96,7 +94,4 @@ public class AuthController {
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 	
-//	public static void main(String l[]) {
-//		System.out.println(new BCryptPasswordEncoder().encode("admin123"));
-//	}
 }

@@ -12,7 +12,7 @@ export class CustomerAccessGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-      if(this.routeAuth.isCustomerAuthenticated){
+      if(this.routeAuth.isCustomerAuthenticated()){
         return of(true)
       }
       else{
