@@ -1,6 +1,9 @@
 <div class="col-md-6 offset-md-3 mt-5" id = "one">
     <div class="card">
-        <h4 class="card-header">SCHEDULING FLIGHT</h4>
+        <div class="card-header">
+            <h4>ADD AIRPORT</h4>
+            <button><a href="/adDashboard">DASHBOARD</a></button>
+        </div>
         <div class="card-body">
             <form [formGroup]="flightForm" (ngSubmit)="addFlight()">
                 <div class="form-group">

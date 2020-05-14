@@ -80,13 +80,13 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	
-	public BookingModel add(BookingModel model, String userId)
+	public List<BookingModel> add(BookingModel model, String userId)
 	{
 		BookingEntity entity =  bRepo.save(of(model,userId));
 		for( PassengerModel i: model.getPassengerList()) {
 			pService.add(i,entity.getId());
 		}		
-		return of(entity);
+		return findAllByUserId(userId);
 
 	}
 	

@@ -1,0 +1,101 @@
+<div class="nav-bar">
+  <app-commonhome></app-commonhome>
+</div>
+      <div class="card-body" id="five">
+          <strong><hr></strong>    
+          <div class="card-header">
+            <h3 class="w3-xxxlarge">SEARCH FLIGHT</h3>
+          </div>
+    
+        <form #fB="ngForm" (submit) = "searchFlight()" >
+        
+          <div class="form-check form-check-inline" >
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">One Way Trip</label>
+          </div>
+             
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option2" disabled>
+            <label class="form-check-label" for="inlineCheckbox3">Round Trip (disabled)</label>
+          </div>
+        
+        
+             
+          <br>
+          <br>
+          <!-- <br> -->
+          <div class="form-row">
+            <div class="col-md-4 mb-3">        
+              <label for="validationDefault03">FROM</label>
+              <select id="inputState1" class="form-control" name="source"  placeholder="source airport" required [(ngModel)]="source" >   
+                <option value="">source</option>
+                <option *ngFor="let i of airportList">{{i.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">        <label for="validationDefault03">TO</label>
+              <select id="inputState" class="form-control" name="destination" required [(ngModel)]="destination" placeholder="destination airport" >
+                <option value="">destination</option>
+                <option *ngFor="let i of airportList">{{i.name}}</option>
+              </select>
+            </div>
+          </div>
+        
+        
+          <br>    
+        
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="validationDefault03">ON</label>
+              <input type="date" min="30-04-2020" name="dateTime" class="form-control" [(ngModel)] = "dateTime" required id="date" placeholder="Date" required>
+            </div>
+    
+            <!-- <div class="col-md-4 mb-3">
+              <label for="">PASSENGERS (AGE > 5 Years)</label>
+              <input type="text" name="passenger"class="form-control" [(ngModel)] = "passenger">
+                 
+            </div> -->
+          </div>
+          <br>
+          
+          <button class="btn btn-dark" type="submit">SEARCH FLIGHT</button>
+        </form>
+     
+        
+        <!-- <br><br><br><br><hr> -->
+        <hr>
+        <span *ngIf = "search; then con01 else con02" ></span>
+          <ng-template #con02></ng-template>
+          <ng-template #con01>
+          <div class="" id = "two">
+            <h3 class="card-header">AVAILABLE FLIGHTS:</h3>
+            <br><br>
+            <table  *ngFor = "let i of flightList; let j = index">
+              <tbody>
+                <tr>
+                  <table>
+                    <div class="col-md-50">
+                      
+                        <tr><th style="padding-right: 5cm;">#</th><td>{{j+1}}</td></tr>
+                        <tr><th>NAME</th><td>{{i.flight.name}}</td></tr>
+                        <tr><th>MODEL</th><td>{{i.flight.model}}</td></tr>
+                        <tr><th>SOURCE</th><td>{{i.source.name}}</td></tr>
+                        <tr><th>DEPARTURE TIME</th><td>{{i.departureTime}}</td></tr>
+                        <tr><th>DESTINATION</th><td>{{i.destination.name}}</td></tr>
+                        <tr><th>ARRIVAL TIME</th><td>{{i.arrivalTime}}</td></tr>
+                        <tr><th>AVAILABLE SEATS</th><td>{{i.seats}}</td></tr>
+                        <tr><th>PRICE</th><td>{{this.i.flightPrice}}</td></tr>
+                        <tr><th>SELECT</th><td>
+                        <button (click) = "bookFlight(i)">SELECT</button>
+                          
+                        </td></tr>
+                
+                    </div>
+                  </table>
+                  <br><br>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-template>    
+      </div>
+    <!-- </div> -->

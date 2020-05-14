@@ -1,60 +1,47 @@
-<!-- <span *ngIf = "payStatus; then con01 else con02"></span>
-
-
-<ng-template #con01>
-
-  <div class="container">
-    <div class="jumbotron">
-      <button id="button1" name="bubtton1" > <a href="/dashboard"> GOTO DASHBOARD</a> </button>
-      <button id="button2" name="bubtton2" > <a href="/viewBooking">VIEW BOOKINGS</a> </button>
-    </div>
-  </div>
-
-</ng-template>
-
-<ng-template #con02> -->
-
-
+  
   <div class="card-body" id="dd">
     <strong><hr></strong>    
     <h3 class="card-header" id="six">ADD PASSENGER DETAILS</h3>
 
     
       <br><br>
-        <form #fB="ngForm" (submit) = "addPassenger()" >
-          <!-- *ngFor = " let i of passNum" -->
-          <div class="row">
-        <div class="column">
-          <div class="form-row" >
-            <div class="col-md-4 mb-3">   
-              <label >NAME</label>
-              <input type="text" placeholder="name" required [(ngModel)] ="name" name="name" class="form-control">
+      <form [formGroup]="form" (submit) = "addPassenger()" >
+        
+        <div class="form-row">
+
+          <div class="form-column">
+
+            <div class="form-row">
+              <div class="form-group col-5">
+                  <label>Name</label>
+                  <input type="text" formControlName="name"  class="form-control" placeholder="Enter name" />
+              </div>
             </div>
-          </div>
-          <div class="form-row" >
-            <div class="col-md-4 mb-3">   
-              <label for="age">AGE</label>
-              <input type="text" name="age" class="form-control" [(ngModel)] = "age" required placeholder="age">
+            <div class="form-row">
+              <div class="form-group col-5">
+                  <label>Age</label>
+                  <input type="text" formControlName="age"  class="form-control" placeholder="Enter Age" />
+              </div>
             </div>
-          </div>
-          <div class="form-row" >
-            <div class="col-md-4 mb-3">
-              <label for="uin">UNIQUE ID</label>
-              <input type="text"  class="form-control" name="uin" [(ngModel)]="uin" required placeholder="id">
+            <div class="form-row">
+              <div class="form-group col-5">
+                  <label>ID</label>
+                  <input type="text" formControlName="id"  class="form-control" placeholder="Enter ID" />
+              </div>
             </div>
+
           </div>
+
+          <div class="form-column">
+            <button type="submit" class="btn btn-dark" >Add Passenger</button>
+            <br><br>
+            <button (click) = "doneBooking()" class="btn btn-dark">Proceed to Payment</button>
+          </div>
+
         </div>
-          <div class="column">
-          
-              <button class="btn btn-dark" type="submit">ADD PASSENGER</button>
-              <br>
-              <button class="btn btn-dark" type="submit" (click) ="doneBooking()" >PROCEED TO PAYMENT</button>
-                          
-        </div>
-    
-      </div>
-        </form>
-    
+      
+      </form>
+      
 
       <hr>
       <span *ngIf = "show; then con01"></span>

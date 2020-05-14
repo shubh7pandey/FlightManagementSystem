@@ -6,6 +6,7 @@ import { ConnectionService } from '../services/connection/connection.service';
 import { Subscriber } from 'rxjs';
 import { Airport } from '../classes/Airport/airport';
 import { User } from '../classes/User/user';
+import { TokenStorageService } from '../services/tokenStorageService/token-storage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,18 +17,18 @@ export class DashboardComponent implements OnInit {
 
   name: String
   airportList: Array<Airport> = []
-    
-  user: User;
-  constructor(private check: CheckService, private route: Router, private connect: ConnectionService) {
+  bookingLength = 0
+  user: any;
+  constructor(private check: CheckService, private route: Router, private tokenSerivce: TokenStorageService, private connect: ConnectionService) {
     // this.check.currentStatus.subscribe(i => console.log(i))
-    this.check.currentUser.subscribe(i => this.name = i.name)
+    // this.check.currentUser.subscribe(i => this.name = i.name)
+    // window.location.reload();
    }
 
   ngOnInit(): void 
   {
-    this.check.currentUser.subscribe(i => {
-      this.user = i
-    })
+    this.user = this.tokenSerivce.getUser()
+    this.connect.getBookingList(this.user.username).subscribe(i => this.bookingLength = i.length);
   }
 
   booking(){
@@ -36,13 +37,6 @@ export class DashboardComponent implements OnInit {
   }
 
   view(){
-    // // this.check.currentStatus.subscribe(i => alert(i))
-    // this.connect.getAirport_List().subscribe(i => {
-    //   for(var j  = 0; j < i.length ; j++){
-    //     this.airportList.push(i[j]);
-    //   }
-    // })
-    this.check.changeAirportList(this.airportList);
     this.route.navigateByUrl('/searchFlight')
   }
 

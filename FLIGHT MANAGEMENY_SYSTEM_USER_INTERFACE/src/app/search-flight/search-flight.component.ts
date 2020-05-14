@@ -22,45 +22,23 @@ export class SearchFlightComponent implements OnInit {
   public destination: String;
   public dateTime: Date
   public passenger: number;
-  public status: Boolean
-  public adminStatus: Boolean
+  public search: boolean;
 
   public airportList: Array<Airport> = []
   constructor(private connect: ConnectionService,private router: Router, private fB: FormBuilder, private check: CheckService) { 
 
-    this.check.currentStatus.subscribe(i => this.status = i)
-    this.check.currentAdminStatus.subscribe(i => this.adminStatus = i)
-    
-    this.connect.getAirport_List().subscribe(i => {
-      this.airportList = i
-    })
-    
 
   }
-
-  
-  
-
-  public allowBooking: boolean = false
-  public search: boolean = false
-
-  
   public flightList: Array<ScheduledFlight> = [];
   
-  public logInCheck:Boolean = false
-  
-  
   ngOnInit(): void {
-
-    this.check.currentStatus.subscribe(i => {
-      this.logInCheck = i
+      this.connect.getAirport_List().subscribe(i => {
+      this.airportList = i
     })
-
   }
 
   searchFlight()
   {
-// console.log(this.source,this.destination,this.dateTime)
     for(var i = 0 ; i < this.airportList.length ; i++){
       if(this.airportList[i].name === this.source){
         this.source = this.airportList[i].code
@@ -76,41 +54,18 @@ export class SearchFlightComponent implements OnInit {
 
     this.connect.getScheduledFlight(this.source,this.destination,this.dateTime).subscribe(f => {
       this.flightList = f
-      console.log(f)
+      // console.log(f)
+      this.search = true
     })
-    // console.log(this.flightList[0].price)
-    this.search = true;
-    if(this.status === true){
-
-      this.allowBooking = true;
-
-    }
-
   }
 
   bookFlight(j:ScheduledFlight ){
-    if(this.status === true){
-      this.check.changeFlight(j);
-      this.router.navigateByUrl('/bookFlight')
-    }
-      
-    // if(this.adminStatus === true){
-    //   this.router.navigateByUrl('/adDashboard')
-    // }
-
-    else{
-      this.router.navigateByUrl("/signIn")
-    }
-
+    this.check.changeFlight(j)
+    this.router.navigateByUrl("/bookFlight")
   }
 
   goto(){
-    if(this.status=== true){
-      this.router.navigateByUrl('/dashboard')
-    }
-    else{
-        this.router.navigateByUrl('/signIn')
-      }
+    this.router.navigateByUrl('/dashboard')
   }
   
   

@@ -5,6 +5,7 @@ import { User } from '../classes/User/user';
 import { Booking } from '../classes/Booking/booking';
 import { Router } from '@angular/router';
 import { Passenger } from '../classes/Passenger/passenger';
+import { TokenStorageService } from '../services/tokenStorageService/token-storage.service';
 
 
 @Component({
@@ -19,42 +20,35 @@ export class ViewBookingComponent implements OnInit {
   passengerList: Array<Passenger>
 
   
-  constructor(private check:CheckService, private route: Router , private connect: ConnectionService) {
+  constructor(private tokenStorage: TokenStorageService, private route: Router , private connect: ConnectionService) {
 
-    this.check.currentUser.subscribe(i => this.user = i);
-    
-    this.connect.getBookingList(this.user.eMail).subscribe(i => {
-      this.bookingList = i 
-      for(var j = 0; j < i.length ; j++){
-        console.log(i[j].passengerList)
-      }
-      for(var j = 0; j < this.bookingList.length ; j++){
-        console.log(this.bookingList[j].passengerList)
-      }
-    })
     // this.bookingList = [this.check.testBooking]  
 
    }
 
   ngOnInit(): void {
+
+    
+    // this.check.currentUser.subscribe(i => this.user = i);
+    
+    this.connect.getBookingList(this.tokenStorage.getUser().username).subscribe(i => this.bookingList = i)
+
   }
 
   goToDashBoard(){
-
     this.route.navigateByUrl('/dashboard');
-
   }
 
   deleteBooking(booking: Booking){
-    console.log("DELTE"+booking)
+    console.log("DELETE"+booking)
+    alert("ARE YOU SURE ?")
     this.connect.deleteBooking(booking.id);
     this.route.navigateByUrl('/dashboard')
-    // this.route
   }
 
-  showPassenger(i: Booking){
-    this.connect.getPassenger(i.id).subscribe(i=> this.passengerList = i)
-    console.log(this.passengerList)
-  }
+  // showPassenger(i: Booking){
+  //   this.connect.getPassenger(i.id).subscribe(i=> this.passengerList = i)
+  //   console.log(this.passengerList)
+  // }
 
 }

@@ -15,4 +15,22 @@ p
 #one{
     margin-left: 5cm;
     margin-right: 2cm;
+    
+}
+table{
+    /* border-radius: 5px; */
+    box-shadow: 2px 2px 2px 2px rgb(63, 57, 57);
+}
+strong:hover{
+    border: lightcoral;
+}
+button:hover{
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px 5px rgb(63, 57, 57);
+}
+.card-header{
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px 1px rgb(63, 57, 57);
+    margin-right: 5cm;
+    margin-top: 1cm;
 }

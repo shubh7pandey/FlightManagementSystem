@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CheckService } from '../services/checkService/check.service';
-import { ConnectionService } from '../services/connection/connection.service';
-import { VirtualTimeScheduler } from 'rxjs';
-import { User } from '../classes/User/user';
+import { AuthService } from '../services/authService/auth.service';
+import { TokenStorageService } from '../services/tokenStorageService/token-storage.service';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { CheckService } from '../services/checkService/check.service';
+// import { ConnectionService } from '../services/connection/connection.service';
+// import { VirtualTimeScheduler } from 'rxjs';
+// import { User } from '../classes/User/user';
 
 @Component({
   selector: 'app-login',
@@ -12,76 +14,57 @@ import { User } from '../classes/User/user';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  user: User
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private check: CheckService,
-    private connect: ConnectionService)
-     { }
-
-     ngOnInit() {
-      this.loginForm = this.formBuilder.group({
-          email: ['', [Validators.required,Validators.email]],
-          password: String
-      });
-    }
-
-    get f() { return this.loginForm.controls; }
-
-  login()
-  {
+  form: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
   
-    this.submitted = true;
-    
-    if(this.loginForm.controls['email'].value === "admin@g.com" && this.loginForm.controls['password'].value === "123")
-    {
-      this.check.changeUser(null);
-      this.check.changeBooking(null)
-      this.check.changeFlight(null)
-      this.check.changeStatus(true)
-      this.check.changeAdminStatus(true)
-      this.router.navigateByUrl('/adDashboard')
-    }    
-    this.connect.getUserByEmail((this.loginForm.controls['email'].value)).subscribe(i => {
-      this.user = i;
-      this.checkPass()
-    })
-     
-  
-    // console.log(this.user)
+  submitted= false;
+  showError: boolean;
 
-    if(this.loginForm.invalid)
-    {
-      return;
+  constructor(private authService: AuthService, private route: Router, private tokenStorage: TokenStorageService) { }
+
+  ngOnInit() {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
     }
-   
-   
-    //  if(this.f.email.value=="admin@gmail.com" && this.f.password.value=="12345678") {
-    //        yagyesh03@gmail.com
-    //      }
   }
 
+  // get f() { return this.registerForm.controls; }
 
+  onSubmit() {
+    this.submitted = true
+    this.authService.login(this.form).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
 
-  checkPass(){
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        // window.location.reload();
+        if(this.roles[0] === 'ADMIN'){
+          this.route.navigateByUrl('adDashboard')
+        }
+        if(this.roles[0] === 'CUSTOMER'){
+          this.route.navigateByUrl('dashboard')
+        }
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
+  }
 
-    if(this.loginForm.controls['password'].value === this.user.pass)
-    {  
-      this.check.changeUser(this.user);
-      this.check.changeBooking(null)
-      this.check.changeFlight(null)
-      this.check.changeStatus(true)
-      this.router.navigateByUrl('/dashboard');
-    }
-    else{
-      alert("Invalid Password")
-      this.loginForm.reset();
-    }
-
+  logout(){
+    this.tokenStorage.signOut();
+    this.route.navigateByUrl("/")
+  }
+  reloadPage() {
+    window.location.reload();
   }
 
 }

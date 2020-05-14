@@ -21,6 +21,8 @@ import { AddScheduledFlightComponent } from './add-scheduled-flight/add-schedule
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonhomeComponent } from './commonhome/commonhome.component';
+import { AnSearchComponent } from './an-search/an-search.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { MatButtonModule } from '@angular/material/button';
     AddAirportComponent,
     AddFlightComponent,
     AddScheduledFlightComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    CommonhomeComponent,
+    AnSearchComponent
   ],
   imports: [
     BrowserModule,

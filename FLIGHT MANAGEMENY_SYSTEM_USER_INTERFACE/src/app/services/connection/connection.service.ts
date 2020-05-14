@@ -15,27 +15,9 @@ export class ConnectionService {
 
   constructor(private http: HttpClient) { }
 
-  public testAirport1: Airport = new Airport("TEST_AIRPORT_01","TEST_LOCATION_01","ATC01");
-  public testAirport2: Airport = new Airport("TEST_AIRPORT_02","TEST_LOCATION_02","ATC02");
-  // public testSchedule: Schdeule = new Schdeule(this.testAirport1,this.testAirport2, new Date(2020, 5, 23, 12, 12, 0, 0), new Date(2020, 5, 23, 2, 12, 0, 0))
-  public testFlight: Flight = new Flight(4402,"AIR ASIA","AIRBUS 720",110);
-  public testScheduledFlight: ScheduledFlight = new ScheduledFlight(111,this.testFlight,7000,110,[],this.testAirport1,this.testAirport2,new Date(2020, 5, 23, 12, 12, 0, 0), new Date(2020, 5, 23, 2, 12, 0, 0))
-  // public flightList: Array<ScheduledFlight> = [this.testScheduledFlight]
-  public testBooking: Booking
-  public testBookingList: Array<Booking> = []
-  public testUser: User = new User(120,"Yagyesh","123","7976649278","yagyesh03@gmail.com",this.testBookingList)
-  public testUserList: Array<User> = [this.testUser]
-
-  // getScheduledFlight(source: String, dest: String, depTime: Date){
-
-  //   console.log("Schedduling FLight For" + source +" "+ dest + - +depTime);
-
-  // }
 
   baseUrl: string = "http://localhost:7004/user/customer/"
-  // Add User to Database
   postUser(user:User){
-    // console.log(user,'connect')
     return this.http.post<User>(this.baseUrl,user).subscribe(i=>console.log("ADDED"));
   }
 
@@ -52,8 +34,8 @@ export class ConnectionService {
   }
 
   updateBookingList(booking: Booking,userId: String): Observable<Array<Booking>> {
-    console.log(booking)
-    return this.http.post<Array<Booking>>(this.baseUrl+"changeBookingList/"+userId, booking)
+    return this.http.post<Array<Booking>>("http://localhost:7001/customer/changeBookingList/"+userId, booking)
+    // return this.http.post<Array<Booking>>(this.baseUrl+"changeBookingList/"+userId, booking)
   }
 
   getBookingList(userId: String): Observable<Array<Booking>>{
@@ -88,36 +70,39 @@ export class ConnectionService {
   // }
 
   airportList: Array<Airport> = []
-  postAirport(airport: Airport): Airport{
+  postAirport(airport: Airport): Observable<Array<Airport>>{
     // this.airportList.push(airport)
     console.log(airport)
-    this.http.post<Airport>("localhost:7004/admin/airports",airport).subscribe(i =>{
+    this.http.post<Airport>("http://localhost:7004/admin/airports",airport).subscribe(i =>{
     airport = i
     console.log(i)
     })
-    return airport
+
+    return this.getAirport_List();
   }
 
   flightList: Array<Flight> = []
   postFlight(flight: Flight): Flight{
     this.flightList.push(flight)
     // console.log(this.flightList.length)
-    this.http.post<Flight>("localhost:7004/admin/flights",flight).subscribe(i => flight = i)
+    this.http.post<Flight>("http://localhost:7004/admin/flights",flight).subscribe(i => flight = i)
     return flight
   }
 
   getFlight(id: String): Flight{
-    this.http.get<Flight>("localhost:7004/admin/flights/"+id).subscribe(i => this.testFlight = i);
-    return this.testFlight;
+    let testFlight = null
+    this.http.get<Flight>("http://localhost:7004/admin/flights/"+id).subscribe(i => testFlight = i);
+    return testFlight;
   }
 
   getAirport(code: String): Airport{
-    this.http.get<Airport>("localhost:7004/admin/airports/"+code).subscribe(i => this.testAirport1 = i);
-    return this.testAirport1;
+    let testAirport = null
+    this.http.get<Airport>("http://localhost:7004/admin/airports/"+code).subscribe(i => testAirport = i);
+    return testAirport;
   }
 
   postScFlight(flight: ScheduledFlight): ScheduledFlight{
-    this.http.post<ScheduledFlight>("localhost:7004/admin/scheduledFlights/",flight).subscribe(i => flight = i);
+    this.http.post<ScheduledFlight>("http://localhost:7004/admin/scheduledFlights/",flight).subscribe(i => flight = i);
     return flight;
   }
 

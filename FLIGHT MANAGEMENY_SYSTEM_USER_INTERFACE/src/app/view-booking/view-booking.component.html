@@ -42,7 +42,8 @@
                                     </table>
                                 </td>
                                 </tr>
-                                <th>Passenger Details</th>
+                                <tr>
+                                    <th>Passenger Details</th>
                                 <!-- <tr><th id="myrow"><button (click) = "showPassenger(i)" >Passenger Details</button></th> -->
                                     <td>
                                         <table>
@@ -53,6 +54,11 @@
                                         </table>
                                     </td>
  
+                                </tr>
+                                <tr>
+                                    <th>Cost</th>
+                                    <td>{{i.cost}}</td>
+                                </tr>
                                 <tr>
                                     <th><button (click) = "deleteBooking(i)">DELETE BOOKING</button></th>
 
@@ -80,7 +86,7 @@
 
                                     <!-- <td><button (click) = "getPassengers(i)">DELETE BOOKING</button></td> -->
                                 </tr>
-    
+                                
                                 <!-- <tr><th id="myrow">Cost</th><td>{{i.cost}}</td></tr> -->
                             </table>
                             <br><br>

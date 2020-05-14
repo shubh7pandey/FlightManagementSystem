@@ -1,20 +1,20 @@
 package com.cg.fmsc.service;
 
-import java.util.List;
-import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import com.cg.fmsc.entity.BookingEntity;
-import com.cg.fmsc.entity.UserEntity;
-import com.cg.fmsc.exception.UserException;
-import com.cg.fmsc.model.BookingModel;
-import com.cg.fmsc.model.UserModel;
+import com.cg.fmsc.model.AirportModel;
 
-public interface UserService {
+
+@Service
+public class UserService {
+
+	@Autowired
+	private RestTemplate rest;
 	
-	UserModel findByeMail(String mail);
-	UserModel add(UserModel user) throws UserException;
-	List<BookingModel> findBookingList(String mail) throws UserException;
-	List<BookingModel> updateBookingList(String mail, BookingModel model) throws UserException;
+	public AirportModel[] getAirportList(){	
+		return rest.getForObject("http://localhost:7002/airports", AirportModel[].class);
+	}
 	
- 
 }
